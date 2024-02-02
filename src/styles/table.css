@@ -1,0 +1,184 @@
+.table_heading {
+  color: #ed4343;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  /* padding: 8px 15px;
+  border-radius: 5px; */
+}
+h6.table_heading {
+  margin-bottom: 0;
+}
+.MuiPaper-elevation {
+  box-shadow: none !important;
+}
+/* Overal Tabel */
+/* .css-1atu56z-MuiPaper-root{
+    border-radius: 5px !important;
+    box-shadow: none;
+    position: relative  !important;
+    z-index: 0  !important;
+} */
+.action_icon {
+  color: rgb(84, 77, 201);
+  text-decoration: none;
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 5px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  padding-right: 7px;
+  background-color: rgb(242, 241, 254);
+  outline: none;
+  border: none;
+}
+
+.export-icon {
+  color: #b4b4b8;
+}
+.action_icon:hover {
+  text-decoration: none;
+  background-color: rgb(95, 85, 238, 0.16);
+}
+.action_danger {
+  color: rgb(216, 46, 46);
+  text-decoration: none;
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 5px;
+  border-radius: 4px;
+  font-size: 12px;
+  padding-right: 7px;
+  background-color: rgb(254, 241, 241);
+}
+.action_danger:hover {
+  color: rgb(216, 46, 46);
+  text-decoration: none;
+  background-color: rgba(238, 85, 85, 0.16);
+}
+.action_info {
+  color: rgb(196, 46, 216);
+  text-decoration: none;
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 5px;
+  border-radius: 4px;
+  font-size: 12px;
+  padding-right: 7px;
+  background-color: rgb(253, 241, 254);
+}
+.action_info:hover {
+  color: rgb(196, 46, 216);
+  text-decoration: none;
+  background-color: rgba(168, 46, 216, 0.199);
+}
+.action_success {
+  color: rgb(33, 124, 56);
+  text-decoration: none;
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 5px;
+  border-radius: 4px;
+  font-size: 12px;
+  padding-right: 7px;
+  background-color: rgb(243, 254, 241);
+}
+.action_success:hover {
+  color: rgb(29, 117, 51);
+  text-decoration: none;
+  background-color: rgba(46, 216, 69, 0.199);
+}
+.dual-icon {
+  display: flex;
+  gap: 7px;
+}
+.dual-icon button {
+  outline: none;
+  border: none;
+}
+/* .MuiTable-root td,.MuiTable-root th{
+    padding: 3px 10px;
+    font-size: 13px;
+}
+.assign-leads .MuiTable-root td,.assign-leads .MuiTable-root th{
+    padding: 1px 10px;
+} */
+
+/* mui table row height */
+.table-with-icon .MuiTable-root td,
+.assign-leads .MuiTable-root th {
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+.accounts-report-table .MuiTable-root td,
+.assign-leads .MuiTable-root th {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+/* mui table row height */
+
+.css-ptiqhd-MuiSvgIcon-root {
+  font-size: 1rem !important;
+}
+.css-dk8izd-MuiTableHead-root {
+  z-index: 1 !important;
+}
+.create-acc .css-dk8izd-MuiTableHead-root {
+  z-index: 0 !important;
+}
+
+.reports .css-dk8izd-MuiTableHead-root {
+  z-index: 0 !important;
+}
+.vendors .css-dk8izd-MuiTableHead-root {
+  z-index: 0 !important;
+}
+.pm-project .css-dk8izd-MuiTableHead-root {
+  z-index: 0 !important;
+}
+.Urgent {
+  color: red;
+}
+.Low {
+  color: grey;
+}
+.High {
+  color: yellow;
+}
+.Medium {
+  color: dodgerblue;
+}
+
+.css-1w86f15 {
+  font-size: 1rem;
+  font-weight: 700;
+}
+.css-hsi95o-MuiTableRow-root td {
+  font-weight: 500;
+}
+@media (min-width: 320px) and (max-width: 431px) {
+  .css-lapokc {
+    font-size: 13px !important;
+  }
+  .css-1sdw5na-MuiTableRow-root td {
+    font-size: 13px !important;
+  }
+  .table_heading {
+    font-size: 14px;
+  }
+  .css-i4bv87-MuiSvgIcon-root {
+    width: 1.1rem !important;
+  }
+  .css-78trlr-MuiButtonBase-root-MuiIconButton-root {
+    padding: 5px !important;
+  }
+}

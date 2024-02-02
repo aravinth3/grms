@@ -1,0 +1,63 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
+* {
+  font-family: "Poppins", sans-serif;
+}
+body {
+  overflow-x: hidden;
+}
+#hamBurger {
+  display: none !important;
+}
+
+html,
+body {
+  overscroll-behavior-x: none;
+  color: var(--white);
+}
+
+.app_bg {
+  background-color: #fff;
+  padding: 5px 5px;
+  border-radius: 4px;
+}
+.edit_icon {
+  color: #555;
+  font-size: 1.1rem;
+}
+.delete_icon {
+  color: #555;
+  font-size: 1.1rem;
+  margin-left: 10px;
+}
+
+/* react-select */
+.css-1u9des2-indicatorSeparator {
+  display: none !important;
+}
+.css-1xc3v61-indicatorContainer {
+  color: #6c757d;
+}
+
+/* hr attendance datepicker */
+.attendance .react-datepicker__input-container {
+  width: 100% !important;
+}
+.Toastify__close-button {
+  display: none !important;
+}
+.Toastify__toast {
+  min-height: 0 !important;
+  padding: 8px;
+  font-size: 13px;
+  width: fit-content;
+}
+.Toastify__toast-body {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.Toastify__toast-container {
+  width: fit-content !important;
+}
+.Toastify--animate-icon {
+  width: 13px !important;
+}

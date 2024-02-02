@@ -1,0 +1,13 @@
+history-clientname {
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+a {
+  color: #b4b4b8;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #000;
+}

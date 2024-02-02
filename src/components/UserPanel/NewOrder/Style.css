@@ -1,0 +1,19 @@
+.new-orders {
+  width: 100%;
+  height: calc(100vh - 100px);
+  background-color: #f1f1f1;
+}
+.add-orders {
+  background-color: #fff;
+  padding: 20px;
+  min-width: 30%;
+  border-radius: 5px;
+  top: 70%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+.add-orders button {
+  width: 100%;
+}

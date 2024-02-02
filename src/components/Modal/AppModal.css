@@ -1,0 +1,135 @@
+.modal-title {
+  color: #000;
+  font-size: 1rem;
+  font-weight: 600;
+}
+.modal-mui-table-icon {
+  color: rgba(0, 0, 0, 0.54);
+  padding: 0.55rem 0.6rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.modal-mui-table .css-i4bv87-MuiSvgIcon-root {
+  font-size: 20px;
+}
+.modal-mui-table .css-1d98dbz-MuiCollapse-root {
+  width: 162px !important;
+}
+.modal-mui-table .css-1d98dbz-MuiCollapse-root input {
+  font-size: 13px;
+}
+.modal-mui-table .css-1d98dbz-MuiCollapse-root input:focus {
+  font-size: 13px;
+}
+
+.modal-mui-table-icon:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+.modal-mui-table-btn {
+  display: flex;
+  justify-content: flex-end;
+}
+.modal-body {
+  padding: 0;
+}
+/* quote modal */
+.quote-modal .row {
+  align-items: flex-end;
+}
+.multiple-input-fields {
+  overflow-y: scroll;
+}
+/* quote modal */
+.multiple-input-fields .row {
+  --bs-gutter-x: 0rem;
+}
+.modal-body h6 {
+  font-size: 13px;
+}
+.modal-body td,
+.modal-body th {
+  font-size: 13px;
+}
+.modal-body .css-wsew38 {
+  padding: 0;
+}
+.modal-body .view-student-modal {
+  padding: 0.7rem;
+}
+.modal-body .view-student-modal table {
+  margin-bottom: 0;
+}
+.modal-body .add-student-modal {
+  padding: 0.7rem;
+}
+.fees-report-modal {
+  padding: 0.7rem;
+  padding-top: 0;
+}
+.salary-report-modal {
+  padding: 0.7rem;
+}
+.salary-report-modal table {
+  margin-bottom: 0;
+}
+.not-interested {
+  padding: 0.7rem;
+}
+.interested {
+  padding: 0.7rem;
+}
+.quote-modal {
+  padding: 0.7rem 0.8rem;
+}
+.module-modal {
+  padding: 0.7rem;
+}
+.sub-module-modal {
+  padding: 0.7rem;
+}
+.add-task-modal {
+  padding: 0.7rem;
+}
+.view-task-sub {
+  padding: 0.7rem 0.9rem;
+}
+/* displaying only search */
+.modal-mui-table .css-di3982 > *:not(:first-child) {
+  display: none;
+}
+
+/* fixing view task full screen scroll */
+.modal-fullscreen .modal-body {
+  overflow-y: clip !important;
+}
+
+/* view task sub */
+.view-task-sub {
+  color: black;
+}
+.view-task-sub p {
+  margin-bottom: 5px;
+}
+.view-task-sub input {
+  font-size: 13px;
+}
+.view-task-sub .css-1nmdiq5-menu {
+  font-size: 13px;
+}
+.view-task-sub .css-1dimb5e-singleValue {
+  font-size: 13px;
+}
+.view-task-sub .col-3 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.multiSelect .css-1i837h3-ValueContainer2 {
+  height: 38px;
+  overflow-y: scroll !important;
+}
+.view-task-modal .css-1nmdiq5-menu {
+}

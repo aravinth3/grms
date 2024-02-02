@@ -1,0 +1,17 @@
+.orderitem-clientname {
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+.history-links a {
+  color: #b4b4b8 !important;
+  text-decoration: none;
+}
+
+.history-links a:hover {
+  color: #000 !important;
+}
+
+p {
+  display: block;
+}

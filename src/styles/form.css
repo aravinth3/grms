@@ -1,0 +1,76 @@
+.app_label {
+  color: #0f0f12 !important;
+  font-weight: 500;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+.app_input {
+  background-color: #fff;
+  border: 1px solid #e9ebec;
+  border-radius: 0.25rem;
+  color: #0f0f12;
+  display: block;
+  font-size: 0.938rem;
+  font-weight: 400;
+  line-height: 1.5;
+  padding: 0.5rem 0.9rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  width: 100%;
+}
+.dd_select {
+  color: grey !important;
+}
+
+.app_bg .react-datepicker-wrapper {
+  width: 100%;
+}
+.quote-modal .react-datepicker-wrapper {
+  width: 100%;
+}
+.react-datepicker-popper {
+  z-index: 1 !important;
+}
+.app_input:focus {
+  border: 1px solid #438a7a !important;
+  outline: none !important;
+}
+.not-focused:focus {
+  border: 1px solid fff !important;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+#from-time-picker:before {
+  content: "From Time:";
+  margin-right: 0.6em;
+  color: #9d9d9d;
+}
+#to-time-picker:before {
+  content: "To Time:";
+  margin-right: 0.6em;
+  color: #9d9d9d;
+}
+.attendance-modal .css-dk8izd-MuiTableHead-root,
+.batchHr .css-dk8izd-MuiTableHead-root {
+  z-index: 0 !important;
+}
+input[type="time"]::-webkit-calendar-picker-indicator {
+  font-size: 13px;
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+  .batchHr .app_input {
+    padding: 0.4rem 0.9rem;
+    font-size: 13px;
+  }
+}
+@media (min-width: 320px) and (max-width: 431px) {
+  .app_input {
+    padding: 0.4rem 0.9rem;
+    font-size: 13px;
+  }
+  .app_label {
+    font-size: 13px;
+  }
+}
