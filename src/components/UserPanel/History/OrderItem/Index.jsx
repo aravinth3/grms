@@ -85,12 +85,12 @@ const OrderItem = () => {
       },
       {
         accessorKey: "prod_code",
-        header: "Product/Service Code",
+        header: "Product Code",
         size: 150,
       },
       {
         accessorKey: "prod_name",
-        header: "Product/Service Name",
+        header: "Product Name",
         size: 150,
       },
       {
@@ -135,26 +135,18 @@ const OrderItem = () => {
     enableBottomToolbar: false,
     enableStickyHeader: true,
     renderTopToolbarCustomActions: () => (
-      <h6 className="table_heading">
-        <strong>Order Item</strong>
-        <CgExport className="export-icon ms-3" style={{ fontSize: "19px", cursor: "pointer" }} onClick={() => handleExportRows(table.getPrePaginationRowModel().rows)} />
+      <h6 className="print_btn" onClick={() => handleExportRows(table.getPrePaginationRowModel().rows)}>
+        <CgExport /> EXPORT
       </h6>
     ),
   });
   return (
-    <div>
+    <div className="container-fluid app_bg p-3">
       <h5 className="orderitem-clientname ms-3 mb-4">
         Welcome <strong>Aravinth</strong>
       </h5>
-      <span className="history-links ms-3">
-        <NavLink>Confirm Orders </NavLink>
-        <IoIosArrowForward /> <NavLink>Order Item</NavLink>
-      </span>
 
-      {/* <span className="history-links ms-3 ">
-        <NavLink>Confirm Orders</NavLink> <IoIosArrowForward /> <NavLink>Order Item</NavLink>
-      </span> */}
-      <div className="customer-profile container-fluid mt-3">
+      <div className="customer-profile mt-4">
         <MaterialReactTable table={table} />
       </div>
     </div>

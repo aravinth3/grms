@@ -1,50 +1,23 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { MaterialReactTable, useMaterialReactTable } from "material-react-table";
 import { NavLink } from "react-router-dom";
 import { MdRemoveRedEye } from "react-icons/md";
 import { CgExport } from "react-icons/cg";
 import { jsPDF } from "jspdf";
 import autoTable from "jspdf-autotable";
-import { IoIosArrowForward } from "react-icons/io";
 import "./Style.css";
-
-const data = [
-  {
-    sn: "1",
-    order_id: "123",
-    order_date: "02/02/2024",
-    delivery_date: "25/02/2024",
-    last_advance: "500",
-    total_amount: "1500",
-    advance: "1000",
-    balance: "500",
-    full_payment: "2000",
-  },
-  {
-    sn: "1",
-    order_id: "123",
-    order_date: "02/02/2024",
-    delivery_date: "25/02/2024",
-    last_advance: "500",
-    total_amount: "1500",
-    advance: "1000",
-    balance: "500",
-    full_payment: "2000",
-  },
-  {
-    sn: "1",
-    order_id: "123",
-    order_date: "02/02/2024",
-    delivery_date: "25/02/2024",
-    last_advance: "500",
-    total_amount: "1500",
-    advance: "1000",
-    balance: "500",
-    full_payment: "2000",
-  },
-];
+import useFetch from "@/hooks/useFetch";
+import AppModal from "@/components/Modal/AppModal";
+import ViewSingleCustomerOrder from "@/components/Modal/viewSingleCustomerOrder";
 
 const ConfirmHistory = () => {
+  const [open, setOpen] = useState(false);
+  const [orderId, setOrderId] = useState("");
+  const customer_id = localStorage.getItem("customer_id");
+  const customer_name = localStorage.getItem("customer_name");
+  const { data: cusOrd } = useFetch(`/order-customer?customer_id=${customer_id}`);
+  console.log(cusOrd);
+
   const handleExportRows = (rows) => {
     const doc = new jsPDF();
     const tableData = rows.map((row) => Object.values(row.original));
@@ -60,57 +33,49 @@ const ConfirmHistory = () => {
   const columns = useMemo(
     () => [
       {
-        accessorKey: "sn", //access nested data with dot notation
-        header: "Sn.No",
-        size: 150,
-      },
-      {
-        accessorKey: "order_id",
-        header: "Order Id",
-        size: 150,
-      },
-      {
-        accessorKey: "order_date",
-        header: "Order Date",
-        size: 150,
-      },
-      {
         accessorKey: "delivery_date",
         header: "Delivery Date",
         size: 150,
       },
       {
-        accessorKey: "last_advance",
-        header: "Last Advance",
+        accessorKey: "advance_date",
+        header: "Advance Date",
         size: 150,
       },
+
       {
         accessorKey: "total_amount",
         header: "Total Amount",
         size: 150,
       },
       {
-        accessorKey: "advance",
+        accessorKey: "advance_amount",
         header: "Advance",
         size: 150,
       },
       {
-        accessorKey: "balance",
+        accessorKey: "balance_amount",
         header: "Balance",
         size: 150,
       },
-      {
-        accessorKey: "full_payment",
-        header: "Full Payment",
-        size: 150,
-      },
+      // {
+      //   accessorKey: "full_payment",
+      //   header: "Full Payment",
+      //   size: 150,
+      // },
       {
         accessorKey: "BRANCH_CODE",
         header: "Action",
-        Cell: () => {
+        Cell: (d) => {
           return (
             <div className="dual-icon">
-              <NavLink className="action_icon">
+              <NavLink
+                className="action_icon"
+                onClick={() => {
+                  setOpen(true);
+                  setOrderId(d?.row?.original?.id);
+                }}
+              >
                 <MdRemoveRedEye />
                 <span>View</span>
               </NavLink>
@@ -124,31 +89,37 @@ const ConfirmHistory = () => {
 
   const table = useMaterialReactTable({
     columns,
-    data,
+    data: cusOrd?.appData ? cusOrd?.appData : [],
     initialState: { density: "compact" },
     enableDensityToggle: false,
     enableBottomToolbar: false,
     enableStickyHeader: true,
     renderTopToolbarCustomActions: () => (
-      <h6 className="table_heading">
-        <strong>Confirm Orders</strong>
-        <CgExport className="export-icon ms-3" style={{ fontSize: "19px", cursor: "pointer" }} onClick={() => handleExportRows(table.getPrePaginationRowModel().rows)} />
+      <h6 className="print_btn" onClick={() => handleExportRows(table.getPrePaginationRowModel().rows)}>
+        <CgExport /> EXPORT
       </h6>
     ),
   });
   return (
-    <div>
-      <h5 className="history-clientname ms-3 mb-4">
-        Welcome <strong>Aravinth</strong>
-      </h5>
-
-      <span className="history-links ms-3">
-        <NavLink to="/dashboard/user/confirm-history">Confirm Orders</NavLink> <IoIosArrowForward /> <NavLink to="/dashboard/user/order-items">Order Item</NavLink>
-      </span>
-      <div className="customer-profile container-fluid mt-4">
-        <MaterialReactTable table={table} />
+    <>
+      <div className="container-fluid">
+        <h5 className="history-clientname mb-4">
+          Welcome <strong>{customer_name}</strong>
+        </h5>
+        <div className="customer-profile mt-4">
+          <MaterialReactTable table={table} />
+        </div>
       </div>
-    </div>
+      <AppModal
+        show={open}
+        handleClose={() => {
+          setOpen(false);
+        }}
+        title="Products"
+      >
+        <ViewSingleCustomerOrder orderId={orderId} setOpen={setOpen} />
+      </AppModal>
+    </>
   );
 };
 

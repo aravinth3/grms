@@ -5,51 +5,11 @@ import { MdDelete } from "react-icons/md";
 import { CgExport } from "react-icons/cg";
 import { jsPDF } from "jspdf";
 import autoTable from "jspdf-autotable";
-
-const data = [
-  {
-    sn: "1",
-    name: "Aravinth",
-    mobile: "7339054025",
-    optional_mobile: "9344212742",
-    email: "arruarvainth3@gmail.com",
-    date_of_register: "02/02/2024",
-  },
-  {
-    sn: "1",
-    name: "Aravinth",
-    mobile: "7339054025",
-    optional_mobile: "9344212742",
-    email: "arruarvainth3@gmail.com",
-    date_of_register: "02/02/2024",
-  },
-  {
-    sn: "1",
-    name: "Aravinth",
-    mobile: "7339054025",
-    optional_mobile: "9344212742",
-    email: "arruarvainth3@gmail.com",
-    date_of_register: "02/02/2024",
-  },
-  {
-    sn: "1",
-    name: "Aravinth",
-    mobile: "7339054025",
-    optional_mobile: "9344212742",
-    email: "arruarvainth3@gmail.com",
-    date_of_register: "02/02/2024",
-  },
-  {
-    sn: "1",
-    name: "Aravinth",
-    mobile: "7339054025",
-    optional_mobile: "9344212742",
-    email: "arruarvainth3@gmail.com",
-    date_of_register: "02/02/2024",
-  },
-];
+import useFetch from "@/hooks/useFetch";
 
 const CustomerInfo = () => {
+  const { data: customer } = useFetch("/customers");
+
   const handleExportRows = (rows) => {
     const doc = new jsPDF();
     const tableData = rows.map((row) => Object.values(row.original));
@@ -65,11 +25,6 @@ const CustomerInfo = () => {
   const columns = useMemo(
     () => [
       {
-        accessorKey: "sn", //access nested data with dot notation
-        header: "Sn.No",
-        size: 150,
-      },
-      {
         accessorKey: "name",
         header: "Name",
         size: 150,
@@ -80,42 +35,52 @@ const CustomerInfo = () => {
         size: 150,
       },
       {
-        accessorKey: "optional_mobile",
-        header: "Mobile (Optional)",
+        accessorKey: "alternate_mobile",
+        header: "Alternative Mobile",
         size: 150,
+        Cell: (d) => {
+          let altMob = d?.row?.original?.alternate_mobile;
+
+          return <NavLink className="text-decoration-none text-dark mt-2 me-1">{altMob === "NULL" ? "NIL" : altMob}</NavLink>;
+        },
       },
       {
         accessorKey: "email",
         header: "Email",
         size: 150,
-      },
-      {
-        accessorKey: "date_of_register",
-        header: "Date of Registeration",
-        size: 150,
-      },
+        Cell: (d) => {
+          let email = d?.row?.original?.email;
 
-      {
-        accessorKey: "BRANCH_CODE",
-        header: "Action",
-        Cell: () => {
-          return (
-            <div className="dual-icon">
-              <NavLink className="action_danger">
-                <MdDelete />
-                <span>Delete</span>
-              </NavLink>
-            </div>
-          );
+          return <NavLink className="text-decoration-none text-dark mt-2 me-1">{email === "NULL" ? "NIL" : email}</NavLink>;
         },
       },
+      // {
+      //   accessorKey: "date_of_register",
+      //   header: "Date of Registeration",
+      //   size: 150,
+      // },
+
+      // {
+      //   accessorKey: "BRANCH_CODE",
+      //   header: "Action",
+      //   Cell: () => {
+      //     return (
+      //       <div className="dual-icon">
+      //         <NavLink className="action_danger">
+      //           <MdDelete />
+      //           <span>Delete</span>
+      //         </NavLink>
+      //       </div>
+      //     );
+      //   },
+      // },
     ],
     []
   );
 
   const table = useMaterialReactTable({
     columns,
-    data,
+    data: customer?.appData ? customer?.appData : [],
     initialState: { density: "compact" },
     enableDensityToggle: false,
     enableBottomToolbar: false,

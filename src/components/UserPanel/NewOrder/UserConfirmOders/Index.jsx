@@ -1,17 +1,12 @@
 import { NavLink } from "react-bootstrap";
 import "./Style.css";
-import { IoIosArrowForward } from "react-icons/io";
 // import { NavLink } from "react-router-dom";
 
 const UserConfirmOrders = () => {
   return (
     <div className="userconfirm-orders">
-      <p>
-        New Orders <IoIosArrowForward />
-        <strong>Confirm Orders</strong> <IoIosArrowForward /> Receipts
-      </p>
-      {/* <NavLink className="app_btn">Add Product</NavLink> */}
-      <div className="user-orders">
+      <div className="user-orders app_bg p-3">
+        <h4 className="app_title">CONFIRM ORDER</h4>
         <form>
           <label className="app_label">Date of Order</label>
           <input type="date" className="app_input" required />

@@ -2,80 +2,27 @@ import { useMemo } from "react";
 import { MaterialReactTable, useMaterialReactTable } from "material-react-table";
 import { NavLink } from "react-router-dom";
 import { MdDelete } from "react-icons/md";
-
-const data = [
-  {
-    id: "123",
-    product_code: "1100",
-    product_name: "Passport size",
-    width: "100",
-    height: "100",
-    unit: "mm",
-    price: "150",
-    quantity: "2",
-    output_type: "print",
-  },
-  {
-    id: "123",
-    product_code: "1100",
-    product_name: "Passport size",
-    width: "100",
-    height: "100",
-    unit: "mm",
-    price: "150",
-    quantity: "2",
-    output_type: "print",
-  },
-  {
-    id: "123",
-    product_code: "1100",
-    product_name: "Passport size",
-    width: "100",
-    height: "100",
-    unit: "mm",
-    price: "150",
-    quantity: "2",
-    output_type: "print",
-  },
-  {
-    id: "123",
-    product_code: "1100",
-    product_name: "Passport size",
-    width: "100",
-    height: "100",
-    unit: "mm",
-    price: "150",
-    quantity: "2",
-    output_type: "print",
-  },
-  {
-    id: "123",
-    product_code: "1100",
-    product_name: "Passport size",
-    width: "100",
-    height: "100",
-    unit: "mm",
-    price: "150",
-    quantity: "2",
-    output_type: "print",
-  },
-];
+import useFetch from "@/hooks/useFetch";
 
 const ViewProducts = () => {
+  const { data } = useFetch(`/products`);
+  const { data: units } = useFetch("/units");
+  const { data: output } = useFetch("/output-types");
+
   const columns = useMemo(
     () => [
-      {
-        accessorKey: "id", //access nested data with dot notation
-        header: "ID",
-        size: 150,
-      },
+      // {
+      //   accessorKey: "id", //access nested data with dot notation
+      //   header: "ID",
+      //   size: 150,
+      // },
       {
         accessorKey: "product_code",
         header: "Product Code",
         size: 150,
       },
       {
-        accessorKey: "product_name", //normal accessorKey
+        accessorKey: "name", //normal accessorKey
         header: "Product Name",
         size: 200,
       },
@@ -90,9 +37,8 @@ const ViewProducts = () => {
         size: 150,
       },
       {
-        accessorKey: "unit",
+        accessorKey: "unit_name",
         header: "Unit",
-        size: 150,
       },
       {
         accessorKey: "price",
@@ -105,31 +51,30 @@ const ViewProducts = () => {
         size: 150,
       },
       {
-        accessorKey: "output_type",
+        accessorKey: "output_type_name",
         header: "Output Type",
-        size: 150,
       },
-      {
-        accessorKey: "BRANCH_CODE",
-        header: "Action",
-        Cell: () => {
-          return (
-            <div className="dual-icon">
-              <NavLink className="action_danger">
-                <MdDelete />
-                <span>Delete</span>
-              </NavLink>
-            </div>
-          );
-        },
-      },
+      // {
+      //   accessorKey: "BRANCH_CODE",
+      //   header: "Action",
+      //   Cell: () => {
+      //     return (
+      //       <div className="dual-icon">
+      //         <NavLink className="action_danger">
+      //           <MdDelete />
+      //           <span>Delete</span>
+      //         </NavLink>
+      //       </div>
+      //     );
+      //   },
+      // },
     ],
     []
   );
 
   const table = useMaterialReactTable({
     columns,
-    data,
+    data: data?.appData ? data?.appData : [],
     initialState: { density: "compact" },
     enableDensityToggle: false,
     enableBottomToolbar: false,
@@ -142,6 +87,11 @@ const ViewProducts = () => {
   });
   return (
     <div>
+      <div className="text-end">
+        <NavLink to="/dashboard/admin/add-products" className="prod-link app_btn danger">
+          Add product
+        </NavLink>
+      </div>
       <div className="customer-profile container-fluid mt-3">
         <MaterialReactTable table={table} />
       </div>

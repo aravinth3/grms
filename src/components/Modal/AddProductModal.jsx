@@ -1,5 +1,3 @@
-import React from "react";
-
 const AddProductModal = () => {
   return (
     <div className="p-3">

@@ -1,7 +1,7 @@
 .main {
   padding: 0 0px 30px;
   transition: all 0.3s;
-  background: #fff;
+  background: red;
   min-height: 100vh;
 }
 

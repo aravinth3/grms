@@ -1,22 +1,19 @@
 .app_label {
-  color: #0f0f12 !important;
-  font-weight: 500;
-  font-size: 0.9rem;
+  color: #212529 !important;
+  font-weight: 600;
+  font-size: 0.7rem;
   margin-bottom: 0.5rem;
 }
 .app_input {
   background-color: #fff;
-  border: 1px solid #e9ebec;
-  border-radius: 0.25rem;
-  color: #0f0f12;
-  display: block;
+  border: 1px solid rgba(0, 0, 0, 0.175);
+  border-radius: 0.375rem;
+  color: #212529;
   font-size: 0.938rem;
   font-weight: 400;
-  line-height: 1.5;
-  padding: 0.5rem 0.9rem;
-  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  width: 100%;
+  padding: 8px 12px;
 }
+
 .dd_select {
   color: grey !important;
 }

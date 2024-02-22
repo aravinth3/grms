@@ -7,9 +7,10 @@
   width: 100%;
 }
 .header .profile {
-  height: 35px;
-  width: 35px;
+  height: 30px;
+  width: 30px;
   border-radius: 50px;
+  box-shadow: 0px 0px 6px 2px rgba(218, 165, 32, 0.6);
 }
 .nav-drop {
   background-color: transparent;
@@ -47,7 +48,7 @@
 }
 
 .header {
-  background-color: #fff !important;
+  background-color: #252b3b !important;
   position: sticky;
   top: 0;
   box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.2);
@@ -91,19 +92,32 @@
 }
 
 .nav-menu {
-  text-decoration: none;
-  font-weight: 700;
-  color: #000;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #8590a5;
+  height: 70px;
+}
+.nav-menu.active {
+  color: #fff;
 }
 
-.nav-menu:hover {
+.nav-menu:hover,
+.nav-menu span {
   padding-top: 2px;
-  color: #3652ad;
+  color: #fff !important;
 }
 .nav-menu ::after {
   padding-top: 2px;
-  color: #3652ad;
+  color: #fff;
 }
+
+.nav-menu span {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #8590a5;
+  height: 70px;
+}
+
 .header .dropdown-menu a:hover {
   background-color: #f8f9fa;
   padding: 0px 10px;
@@ -122,7 +136,6 @@
   z-index: 997;
   height: 65px;
   background-color: #fff;
-  padding-left: 20px;
 }
 
 .header .toggle-sidebar-btn {
@@ -247,8 +260,9 @@
 }
 
 .header-nav .nav-profile img {
-  height: 40px;
-  width: 40px;
+  height: 30px;
+  width: 30px;
+
   border-radius: 50% !important;
 }
 

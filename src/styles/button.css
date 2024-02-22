@@ -1,12 +1,12 @@
 .app_btn {
-  background-color: #9d76c1;
+  background-color: #5664d2;
   border: none;
   color: #fff;
   border-radius: 0.375rem;
-  padding: 0.5rem 0.9rem;
+  padding: 0.5rem 0.6rem;
   text-decoration: none;
-  font-weight: 600;
-  font-size: 0.938rem;
+  font-weight: 400;
+  font-size: 0.9.38rem;
   /* border: 1px solid #E5D1FA; */
   text-align: center;
 }
@@ -17,6 +17,7 @@
   background-color: #fff;
   border: 1px solid #9d76c1;
   color: #9d76c1;
+  padding: 0.5rem 0.6rem;
 }
 
 .btn:hover {
@@ -43,16 +44,25 @@
 }
 
 .success {
-  background-color: #12372a;
-  border: 1px solid #12372a;
+  background-color: #1cbb8c;
+  border: 1px solid #1cbb8c;
 }
 
 .success:hover {
-  color: #12372a;
+  color: #1cbb8c;
   background-color: #fff;
-  border: 1px solid #12372a;
+  border: 1px solid #1cbb8c;
 }
 
+.print_btn {
+  background-color: darkgreen;
+  padding: 5px 20px;
+  color: #fff;
+  font-weight: 500;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 0.7rem;
+}
 @media (min-width: 320px) and (max-width: 431px) {
   .app_btn {
     padding: 0.4rem 0.9rem;

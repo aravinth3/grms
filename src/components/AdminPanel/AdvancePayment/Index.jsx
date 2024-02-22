@@ -1,50 +1,13 @@
 import { useMemo } from "react";
 import { MaterialReactTable, useMaterialReactTable } from "material-react-table";
 import { NavLink } from "react-router-dom";
-import { MdDelete } from "react-icons/md";
 import { CgExport } from "react-icons/cg";
 import { jsPDF } from "jspdf";
 import autoTable from "jspdf-autotable";
-
-const data = [
-  {
-    sn: "1",
-    name: "Aravinth",
-    mobile: "7339054025",
-    advance: "1000",
-    date: "02/02/2024",
-  },
-  {
-    sn: "1",
-    name: "Aravinth",
-    mobile: "7339054025",
-    advance: "1000",
-    date: "02/02/2024",
-  },
-  {
-    sn: "1",
-    name: "Aravinth",
-    mobile: "7339054025",
-    advance: "1000",
-    date: "02/02/2024",
-  },
-  {
-    sn: "1",
-    name: "Aravinth",
-    mobile: "7339054025",
-    advance: "1000",
-    date: "02/02/2024",
-  },
-  {
-    sn: "1",
-    name: "Aravinth",
-    mobile: "7339054025",
-    advance: "1000",
-    date: "02/02/2024",
-  },
-];
+import useFetch from "@/hooks/useFetch";
 
 const AdvancePayment = () => {
+  const { data: advance } = useFetch(`/advances`);
   const handleExportRows = (rows) => {
     const doc = new jsPDF();
     const tableData = rows.map((row) => Object.values(row.original));
@@ -60,11 +23,6 @@ const AdvancePayment = () => {
   const columns = useMemo(
     () => [
       {
-        accessorKey: "sn", //access nested data with dot notation
-        header: "Sn.No",
-        size: 150,
-      },
-      {
         accessorKey: "name",
         header: "Name",
         size: 150,
@@ -72,40 +30,35 @@ const AdvancePayment = () => {
       {
         accessorKey: "mobile",
         header: "Mobile",
-        size: 150,
       },
       {
-        accessorKey: "advance",
-        header: "Advance",
+        accessorKey: "email",
+        header: "Email",
         size: 150,
-      },
-      {
-        accessorKey: "date",
-        header: "Date",
-        size: 150,
-      },
+        Cell: (d) => {
+          let email = d?.row?.original?.email;
 
-      {
-        accessorKey: "BRANCH_CODE",
-        header: "Action",
-        Cell: () => {
-          return (
-            <div className="dual-icon">
-              <NavLink className="action_danger">
-                <MdDelete />
-                <span>Delete</span>
-              </NavLink>
-            </div>
-          );
+          return <NavLink className="text-decoration-none text-dark mt-2 me-1">{email === "NULL" ? "NIL" : email}</NavLink>;
         },
       },
+      {
+        accessorKey: "advance_amount",
+        header: "Amount",
+      },
+      // {
+      //   accessorKey: "updated_at",
+      //   header: "Last Updated",
+      //   Cell: (d) => {
+      //     return <NavLink className="text-decoration-none text-dark">{d?.row?.original?.updated_at?.split(" ")[0]}</NavLink>;
+      //   },
+      // },
     ],
     []
   );
 
   const table = useMaterialReactTable({
     columns,
-    data,
+    data: advance?.appData ? advance?.appData : [],
     initialState: { density: "compact" },
     enableDensityToggle: false,
     enableBottomToolbar: false,

@@ -1,11 +1,11 @@
 import axios from "axios";
 
 const privateAPI = axios.create({
-  baseURL: process.env.REACT_APP_SERVER_API,
+  baseURL: import.meta.env.VITE_GRMS_API,
 });
 
 privateAPI.interceptors.request.use((config) => {
-  const appToken = localStorage.getItem("aqua-access-token");
+  const appToken = localStorage.getItem("access-token");
   if (appToken) {
     config.headers.Authorization = `Bearer ${appToken}`;
   }

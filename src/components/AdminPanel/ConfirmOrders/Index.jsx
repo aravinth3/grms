@@ -1,68 +1,14 @@
 import { useMemo } from "react";
 import { MaterialReactTable, useMaterialReactTable } from "material-react-table";
 import { NavLink } from "react-router-dom";
-import { MdDelete } from "react-icons/md";
-import { FaEye } from "react-icons/fa";
 import { CgExport } from "react-icons/cg";
 import { jsPDF } from "jspdf";
 import autoTable from "jspdf-autotable";
-
-const data = [
-  {
-    sn: "1",
-    name: "Aravinth",
-    order_id: "123",
-    mobile: "7339054025",
-    order_date: "02/01/2024",
-    delivery_date: "15/02/2024",
-    last_advance: "12/05/2024",
-    total_amount: "1500",
-    advance: "1000",
-    balance: "500",
-    full_amount: "1500",
-  },
-  {
-    sn: "1",
-    name: "Aravinth",
-    order_id: "123",
-    mobile: "7339054025",
-    order_date: "02/01/2024",
-    delivery_date: "15/02/2024",
-    last_advance: "12/05/2024",
-    total_amount: "1500",
-    advance: "1000",
-    balance: "500",
-    full_amount: "1500",
-  },
-  {
-    sn: "1",
-    name: "Aravinth",
-    order_id: "123",
-    mobile: "7339054025",
-    order_date: "02/01/2024",
-    delivery_date: "15/02/2024",
-    last_advance: "12/05/2024",
-    total_amount: "1500",
-    advance: "1000",
-    balance: "500",
-    full_amount: "1500",
-  },
-  {
-    sn: "1",
-    name: "Aravinth",
-    order_id: "123",
-    mobile: "7339054025",
-    order_date: "02/01/2024",
-    delivery_date: "15/02/2024",
-    last_advance: "12/05/2024",
-    total_amount: "1500",
-    advance: "1000",
-    balance: "500",
-    full_amount: "1500",
-  },
-];
+import useFetch from "@/hooks/useFetch";
 
 const ConfirmOrders = () => {
+  const { data: conOrder } = useFetch("/orders");
+
   const handleExportRows = (rows) => {
     const doc = new jsPDF();
     const tableData = rows.map((row) => Object.values(row.original));
@@ -78,19 +24,9 @@ const ConfirmOrders = () => {
   const columns = useMemo(
     () => [
       {
-        accessorKey: "sn", //access nested data with dot notation
-        header: "Sn.No",
-        size: 150,
-      },
-      {
         accessorKey: "name",
         header: "Name",
         size: 150,
-      },
-      {
-        accessorKey: "order_id", //normal accessorKey
-        header: "Order Id",
-        size: 200,
       },
       {
         accessorKey: "mobile",
@@ -98,18 +34,33 @@ const ConfirmOrders = () => {
         size: 150,
       },
       {
-        accessorKey: "order_date",
-        header: "Order Date",
+        accessorKey: "alternate_mobile",
+        header: "Alternative Mobile",
+        size: 150,
+        Cell: (d) => {
+          let altMob = d?.row?.original?.alternate_mobile;
+
+          return <NavLink className="text-decoration-none text-dark mt-2 me-1">{altMob === "NULL" ? "NIL" : altMob}</NavLink>;
+        },
+      },
+      {
+        accessorKey: "email",
+        header: "Email",
+        Cell: (d) => {
+          let email = d?.row?.original?.email;
+
+          return <NavLink className="text-decoration-none text-dark mt-2 me-1">{email === "NULL" ? "NIL" : email}</NavLink>;
+        },
+      },
+
+      {
+        accessorKey: "advance_amount",
+        header: "Advance Amount",
         size: 150,
       },
       {
-        accessorKey: "delivery_date",
-        header: "Delivery Date",
-        size: 150,
-      },
-      {
-        accessorKey: "last_advance",
-        header: "Last Advance",
+        accessorKey: "balance_amount",
+        header: "Balance Amount",
         size: 150,
       },
       {
@@ -118,38 +69,14 @@ const ConfirmOrders = () => {
         size: 150,
       },
       {
-        accessorKey: "advance",
-        header: "Advance",
+        accessorKey: "advance_date",
+        header: "Advance Date",
         size: 150,
       },
       {
-        accessorKey: "balance",
-        header: "Balance",
+        accessorKey: "delivery_date",
+        header: "Delivery Date",
         size: 150,
-      },
-      {
-        accessorKey: "full_amount",
-        header: "Full Amount",
-        size: 150,
-      },
-      {
-        accessorKey: "BRANCH_CODE",
-        header: "Action",
-        Cell: () => {
-          return (
-            <div className="dual-icon">
-              <NavLink className="action_danger">
-                <MdDelete />
-                <span>Delete</span>
-              </NavLink>
-
-              <NavLink className="action_icon">
-                <FaEye />
-                <span>View</span>
-              </NavLink>
-            </div>
-          );
-        },
       },
     ],
     []
@@ -157,7 +84,7 @@ const ConfirmOrders = () => {
 
   const table = useMaterialReactTable({
     columns,
-    data,
+    data: conOrder?.appData ? conOrder?.appData : [],
     initialState: { density: "compact" },
     enableDensityToggle: false,
     enableBottomToolbar: false,

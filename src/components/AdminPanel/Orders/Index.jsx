@@ -1,71 +1,14 @@
 import { useMemo } from "react";
 import { MaterialReactTable, useMaterialReactTable } from "material-react-table";
 import { NavLink } from "react-router-dom";
-import { MdDelete } from "react-icons/md";
 import { CgExport } from "react-icons/cg";
 import { jsPDF } from "jspdf";
 import autoTable from "jspdf-autotable";
-
-const data = [
-  {
-    sn: "1",
-    name: "Aravinth",
-    order_id: "123",
-    mobile: "7339054025",
-    prod_code: "LM123",
-    prod_name: "24 * 40 laminations",
-    size: "24 * 40",
-    quantity: "2",
-    photo_no: "45",
-    output_type: "Lamination",
-    other_info: "Parcel this into a gift wrapper",
-    price: "1500",
-  },
-  {
-    sn: "1",
-    name: "Aravinth",
-    order_id: "123",
-    mobile: "7339054025",
-    prod_code: "LM123",
-    prod_name: "24 * 40 laminations",
-    size: "24 * 40",
-    quantity: "2",
-    photo_no: "45",
-    output_type: "Lamination",
-    other_info: "Parcel this into a gift wrapper",
-    price: "1500",
-  },
-  {
-    sn: "1",
-    name: "Aravinth",
-    order_id: "123",
-    mobile: "7339054025",
-    prod_code: "LM123",
-    prod_name: "24 * 40 laminations",
-    size: "24 * 40",
-    quantity: "2",
-    photo_no: "45",
-    output_type: "Lamination",
-    other_info: "Parcel this into a gift wrapper",
-    price: "1500",
-  },
-  {
-    sn: "1",
-    name: "Aravinth",
-    order_id: "123",
-    mobile: "7339054025",
-    prod_code: "LM123",
-    prod_name: "24 * 40 laminations",
-    size: "24 * 40",
-    quantity: "2",
-    photo_no: "45",
-    output_type: "Lamination",
-    other_info: "Parcel this into a gift wrapper",
-    price: "1500",
-  },
-];
+import useFetch from "@/hooks/useFetch";
 
 const Orders = () => {
+  const { data: orderData } = useFetch("/orders-products");
+
   const handleExportRows = (rows) => {
     const doc = new jsPDF();
     const tableData = rows.map((row) => Object.values(row.original));
@@ -81,43 +24,8 @@ const Orders = () => {
   const columns = useMemo(
     () => [
       {
-        accessorKey: "sn", //access nested data with dot notation
-        header: "Sn.No",
-        size: 150,
-      },
-      {
         accessorKey: "name",
         header: "Name",
-        size: 150,
-      },
-      {
-        accessorKey: "order_id", //normal accessorKey
-        header: "Order Id",
-        size: 200,
-      },
-      {
-        accessorKey: "mobile",
-        header: "Mobile",
-        size: 150,
-      },
-      {
-        accessorKey: "prod_code",
-        header: "Product/Service Code",
-        size: 150,
-      },
-      {
-        accessorKey: "prod_name",
-        header: "Product/Service Name",
-        size: 150,
-      },
-      {
-        accessorKey: "size",
-        header: "Size",
-        size: 150,
-      },
-      {
-        accessorKey: "quantity",
-        header: "Quantity",
         size: 150,
       },
       {
@@ -126,41 +34,77 @@ const Orders = () => {
         size: 150,
       },
       {
-        accessorKey: "output_type",
+        accessorKey: "height",
+        header: "Height",
+        size: 150,
+      },
+      {
+        accessorKey: "width",
+        header: "Width",
+        size: 150,
+      },
+
+      {
+        accessorKey: "product_code",
+        header: "Product Code",
+        size: 150,
+      },
+      {
+        accessorKey: "quantity",
+        header: "Quantity",
+        size: 150,
+      },
+      {
+        accessorKey: "unit_name",
+        header: "Unit",
+        size: 150,
+      },
+      {
+        accessorKey: "output_type_name",
         header: "Output Type",
         size: 150,
       },
       {
         accessorKey: "other_info",
-        header: "Other Info",
+        header: "Remarks",
         size: 150,
       },
-      {
-        accessorKey: "price",
-        header: "Price",
-        size: 150,
-      },
-      {
-        accessorKey: "BRANCH_CODE",
-        header: "Action",
-        Cell: () => {
-          return (
-            <div className="dual-icon">
-              <NavLink className="action_danger">
-                <MdDelete />
-                <span>Delete</span>
-              </NavLink>
-            </div>
-          );
-        },
-      },
+      // {
+      //   accessorKey: "output_type",
+      //   header: "Output Type",
+      //   size: 150,
+      // },
+      // {
+      //   accessorKey: "other_info",
+      //   header: "Other Info",
+      //   size: 150,
+      // },
+      // {
+      //   accessorKey: "price",
+      //   header: "Price",
+      //   size: 150,
+      // },
+      // {
+      //   accessorKey: "BRANCH_CODE",
+      //   header: "Action",
+      //   Cell: () => {
+      //     return (
+      //       <div className="dual-icon">
+      //         <NavLink className="action_danger">
+      //           <MdDelete />
+      //           <span>Delete</span>
+      //         </NavLink>
+      //       </div>
+      //     );
+      //   },
+      // },
     ],
     []
   );
 
   const table = useMaterialReactTable({
     columns,
-    data,
+    data: orderData?.appData ? orderData?.appData : [],
     initialState: { density: "compact" },
     enableDensityToggle: false,
     enableBottomToolbar: false,

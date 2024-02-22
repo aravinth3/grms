@@ -1,9 +1,4 @@
-.new-orders {
-  width: 100%;
-  height: calc(100vh - 100px);
-  background-color: #f1f1f1;
-}
-.add-orders {
+/* .add-orders {
   background-color: #fff;
   padding: 20px;
   min-width: 30%;
@@ -16,4 +11,4 @@
 
 .add-orders button {
   width: 100%;
-}
+} */

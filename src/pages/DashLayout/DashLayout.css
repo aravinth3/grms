@@ -1,6 +1,6 @@
 .main {
   overflow-x: hidden;
   transition: all 0.3s;
-  background: #f1f1f1;
+  background: rgb(241, 245, 247);
   height: 100vh;
 }
